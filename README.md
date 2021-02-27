@@ -17,7 +17,11 @@ List anything the user needs to install, and how to install it, here.
 
 ## Using Versioning Checker
 
-Walkthrough how to use the project, once setup is complete, here.
+```YAML
+uses: mwcodebase/versioning-checker
+with:
+  who-to-greet: 'Mona the Octocat'
+```
 
 ## FAQ
 
