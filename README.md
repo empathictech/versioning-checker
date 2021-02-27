@@ -1,6 +1,6 @@
-# {PROJECT_NAME}
+# Versioning Checker
 
-Provide a brief description of the project here.
+Simple JavaScript GitHub Action for checking if the `CHANGELOG.md` and `APP_VERSION` files (in the repos base) have been updated when a PR is opened/run.
 
 ## Getting started
 
@@ -15,9 +15,13 @@ As mentioned, this app is built on X, so make sure you have X (X sub-version) in
 
 List anything the user needs to install, and how to install it, here.
 
-## Using {PROJECT_NAME}
+## Using Versioning Checker
 
-Walkthrough how to use the project, once setup is complete, here.
+```YAML
+uses: mwcodebase/versioning-checker
+with:
+  who-to-greet: 'Mona the Octocat'
+```
 
 ## FAQ
 
@@ -25,7 +29,7 @@ If you have any questions or issues, you might find a solution in the [FAQ](FAQ.
 
 ## Contributing
 
-If you would like to contribute to {PROJECT_NAME}, please see how in [CONTRIBUTING](CONTRIBUTING.md)
+If you would like to contribute to Versioning Checker, please see how in [CONTRIBUTING](CONTRIBUTING.md)
 
 ## License
 

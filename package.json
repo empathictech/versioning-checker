@@ -1,0 +1,24 @@
+{
+  "name": "versioning-checker",
+  "version": "1.0.0",
+  "description": "Simple JavaScript GitHub Action for checking if the `CHANGELOG.md` and `APP_VERSION` files (in the repos base) have been updated when a PR is opened/run.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwcodebase/versioning-checker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwcodebase/versioning-checker/issues"
+  },
+  "homepage": "https://github.com/mwcodebase/versioning-checker#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  }
+}
