@@ -1,5 +1,7 @@
 name: Versioning Checker
 description: "Check if APP_VERSION and CHANGELOG have been updated"
+icon: check-square
+color: purple
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
