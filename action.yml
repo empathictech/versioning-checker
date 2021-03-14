@@ -3,6 +3,13 @@ description: 'Checks whether the APP_VERSION and CHANGELOG.md files have been up
 icon: check-square
 color: purple
 
+inputs:
+  token:
+    description: 'GitHub token created by workflow'
+    required: true
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.token }}
