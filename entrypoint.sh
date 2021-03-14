@@ -1,23 +1,30 @@
 #!/bin/sh
 
+result=0
+
+# Collect git information
 branch=${GITHUB_HEAD_REF}
 base=${GITHUB_BASE_REF}
 clone_link="https://github.com/$GITHUB_REPOSITORY.git"
 
+# Clone repo
 git clone $clone_link repo
 cd repo
 git checkout $branch
 
+# Collect changed files
 git diff --name-only $branch $base >> changed.txt
 
-if ! grep -Fxq "APP_VERSION" changed.txt
-then
-  echo "APP_VERSION file not updated."
-  exit 1
-fi
+# Collect tracked files
+tracked_files=', ' read -r -a array <<< $1
 
-if ! grep -Fxq "CHANGELOG.md" changed.txt
-then
-  echo "CHANGELOG.md file not updated."
-  exit 1
-fi
+# Print any unchanged tracked files
+for f in ${tracked_files[@]}; do
+  if ! grep -Fxq "$f" changed.txt
+  then
+    echo "$f has not been updated"
+    result=1
+  fi
+done
+
+exit $result
