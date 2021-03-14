@@ -16,11 +16,11 @@ git checkout $branch
 git diff --name-only $branch $base >> changed.txt
 
 # Collect tracked files
-IFS="," read -a tracked_files <<< $1
+IFS="," read -a to_track <<< $tracked_files
 
 # Print any unchanged tracked files
-echo ""; echo "Checking for changes in ${tracked_files[@]}..."; echo ""
-for f in ${tracked_files[@]}; do
+echo ""; echo "Checking for changes in ${to_track[@]}..."; echo ""
+for f in ${to_track[@]}; do
   if ! grep -Fxq "$f" changed.txt
   then
     echo "$f has not been updated"
