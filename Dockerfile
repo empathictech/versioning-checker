@@ -1,10 +1,9 @@
-FROM ubuntu:20.04
+FROM alpine/git:latest
 
-RUN apt-get -yq update && \
-  apt-get -yq upgrade && \
-  apt-get install -yq --no-install-recommends git && \
-  apt-get clean
+RUN mkdir -p /app
 
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /tmp/entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+WORKDIR /app
+
+ENTRYPOINT ["/tmp/entrypoint.sh"]
