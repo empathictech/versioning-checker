@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 result=0
 
@@ -16,7 +16,7 @@ git checkout $branch
 git diff --name-only $branch $base >> changed.txt
 
 # Collect tracked files
-tracked_files=', ' read -r -a array <<< $1
+IFS="," read -a tracked_files <<< $1
 
 # Print any unchanged tracked files
 for f in ${tracked_files[@]}; do
