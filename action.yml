@@ -1,18 +1,6 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
-
-inputs:
-  who-to-greet:
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-
-outputs:
-  time:
-    description: 'The time we greeted you'
+name: 'Versioning Checker'
+description: 'Checks whether the APP_VERSION and CHANGELOG.md files have been updated on each PR'
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
