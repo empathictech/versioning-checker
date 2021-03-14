@@ -2,13 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [0.0.2] - 2021-02-27
+## v1.0: 2021-03-14
 ### Updates
- - Completed working "beta" of the action; a functioning "Hello World" action
+ - Fixed bash script error from previous release
+ - Fully functional action that checks for updated versioning files
 
-## [0.0.1] - 2021-02-27
+## v0.3-testing: 2021-03-13
+### Updates
+ - Switched to Docker based action
+ - Updated action to (hopefully) fail on whether the APP_VERSION and CHANGELOG.md files have been updated
+  - *RELEASE DELETED*
+
+## v0.2-alpha: 2021-02-28
+### Updates
+ - Completed alpha version of the action; a functioning "Hello World" javascript action
+  - *RELEASE DELETED*
+
+##  v0.1: 2021-02-27
 ### Initialized
  - Initial commit of repo
+  - *RELEASE DELETED*

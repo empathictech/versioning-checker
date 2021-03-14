@@ -1,13 +1,13 @@
-name: Versioning Checker
-description: "Check if APP_VERSION and CHANGELOG have been updated"
+name: 'Versioning Checker'
+description: 'Checks whether the APP_VERSION and CHANGELOG.md files have been updated on each PR'
+icon: check-square
+color: purple
+
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  token:
+    description: 'GitHub token created by workflow'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: 'docker'
+  image: 'Dockerfile'
