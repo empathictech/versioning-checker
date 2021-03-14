@@ -6,18 +6,19 @@ Simple Docker based GitHub Action that allows users to check if certain files ha
 
 ### tracked_files
 
-**Required**  Comma separated String list of file names that need to be checked for updates. Default `APP_VERSION,CHANGELOG.md`.
+**Required** Comma separated String list of file names that need to be checked for updates.
+Default `APP_VERSION,CHANGELOG.md`.
 
 ## Outputs
 
-Will fail if any of the provided file names are not found in a git diff betweem the PR branch and master branch. Each unchanged file will be echo'd to stdout in the Action Console.
+Will fail if any of the provided file names are not found in a git diff between the head and base branches of the PR. Each unchanged file will be echo'd to stdout in the Action Console.
 
 ## Example usage
 
 ### Code snippet
 
 ``` YAML
-uses: mwcodebase/versioning-checker@v2.0
+uses: mwcodebase/versioning-checker@v2.2
 with:
   tracked_files: 'main.py,CHANGELOG.md'
 ```
@@ -37,7 +38,7 @@ jobs:
     name: Checks main.py and CHANGELOG.md files for updates.
     steps:
     - name: Version check action
-      uses: mwcodebase/versioning-checker@v2.0
+      uses: mwcodebase/versioning-checker@v2.2
       with:
         tracked_files: 'main.py,CHANGELOG.md'
 ```

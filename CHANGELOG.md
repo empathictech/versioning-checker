@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.2: 2021-03-14
+### Updates
+ - Fixed typos in README.md, no code/functionality changes
+
 ## v2.1: 2021-03-14
 ### Updates
  - Added more verbose logging
