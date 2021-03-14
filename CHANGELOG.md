@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.1: 2021-03-14
+### Updates
+ - Added more verbose logging
+
 ## v2.0: 2021-03-14
 ### Updates
  - Updated the action to allow users to provide a comma seperated list (via String) of all file names that should be tracked. Defaults to APP_VERSION and CHANGELOG.md, so default behavior is (mostly, see below) unchanged.
