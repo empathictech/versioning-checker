@@ -1,26 +1,45 @@
 # Versioning Checker
 
-Simple JavaScript GitHub Action for checking if the `CHANGELOG.md` and `APP_VERSION` files (in the repos base) have been updated when a PR is opened/run.
+Simple Docker based GitHub Action that allows users to check if certain files have been changed on PRs. Default behavior is for the action to check for changes in `APP_VERSION` and `CHANGELOG.md` files, but the user can provide a comma seperated list (via String) of file names for the action to check for. The action uses a basic regex match so full paths do not need to be provided, only the file name (or portion of a file name for that matter).
 
-## Getting started
+## Inputs
 
-The first step, as always, is to clone the repo to your machine. Run
-```shell
-git clone https://github.com/mwcodebase/BLOB
+### tracked_files
+
+**Required**  Comma separated String list of file names that need to be checked for updates. Default `APP_VERSION,CHANGELOG.md`.
+
+## Outputs
+
+Will fail if any of the provided file names are not found in a git diff betweem the PR branch and master branch. Each unchanged file will be echo'd to stdout in the Action Console.
+
+## Example usage
+
+### Code snippet
+
+``` YAML
+uses: mwcodebase/versioning-checker@v2.0
+with:
+  tracked_files: 'main.py,CHANGELOG.md'
 ```
 
-As mentioned, this app is built on X, so make sure you have X (X sub-version) installed on your machine: LINK
+### Exapmle main.yml
 
-### Dependencies/Prerequisites
+``` YAML
+name: Health check extravaganza
 
-List anything the user needs to install, and how to install it, here.
+on:
+  pull_request:
+    branches: [ master ]
 
-## Using Versioning Checker
-
-```YAML
-uses: mwcodebase/versioning-checker
-with:
-  who-to-greet: 'Mona the Octocat'
+jobs:
+  version_check:
+    runs-on: ubuntu-latest
+    name: Checks main.py and CHANGELOG.md files for updates.
+    steps:
+    - name: Version check action
+      uses: mwcodebase/versioning-checker@v2.0
+      with:
+        tracked_files: 'main.py,CHANGELOG.md'
 ```
 
 ## FAQ

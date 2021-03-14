@@ -4,9 +4,10 @@ icon: check-square
 color: purple
 
 inputs:
-  token:
-    description: 'GitHub token created by workflow'
+  tracked_files:
+    description: 'Comma separated list of all file names that should be tracked.'
     required: true
+    default: "APP_VERSION,CHANGELOG.md"
 
 runs:
   using: 'docker'
