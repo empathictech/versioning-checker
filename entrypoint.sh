@@ -1,5 +1,4 @@
 #!/bin/bash
-
 result=0
 
 # Collect git information
@@ -8,6 +7,7 @@ base=${GITHUB_BASE_REF}
 clone_link="https://github.com/$GITHUB_REPOSITORY.git"
 
 # Clone repo
+echo "Cloning $GITHUB_REPOSITORY"
 git clone $clone_link repo
 cd repo
 git checkout $branch
@@ -19,6 +19,7 @@ git diff --name-only $branch $base >> changed.txt
 IFS="," read -a tracked_files <<< $1
 
 # Print any unchanged tracked files
+echo ""; echo "Checking for changes in ${tracked_files[@]}..."; echo ""
 for f in ${tracked_files[@]}; do
   if ! grep -Fxq "$f" changed.txt
   then
