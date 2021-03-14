@@ -1,15 +1,26 @@
 name: Versioning Checker
-description: "Check if APP_VERSION and CHANGELOG have been updated"
-icon: check-square
+description: Check if APP_VERSION and CHANGELOG files have been updated
+icon: file
 color: purple
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+
 runs:
   using: 'node12'
   main: 'index.js'
+
+  inputs:
+  token:
+    description: >
+      GitHub token for GitHub API requests.
+      Users shouldn't need to set this themselves.
+    required: true
+    default: ${{ github.token }}
+
+jobs:
+  collect_changed_files:
+    runs-on: ubuntu-latest
+    name: Collect changed files
+      steps:
+        - name: Git diff
+          id: git_diff
+          run: echo '::set-output name=SELECTED_COLOR::green'
+          
