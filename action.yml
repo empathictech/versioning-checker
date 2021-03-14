@@ -1,5 +1,7 @@
 name: 'Versioning Checker'
 description: 'Checks whether the APP_VERSION and CHANGELOG.md files have been updated on each PR'
+icon: check-square
+color: purple
 
 runs:
   using: 'docker'
