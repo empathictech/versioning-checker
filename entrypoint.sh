@@ -2,9 +2,21 @@
 
 token=$1
 branch=${GITHUB_REF##*/}
+
+
+echo $branch
+
 clone_link="https://github.com/$GITHUB_REPOSITORY.git"
 
+echo $clone_link
+
+pwd
+ls
+
 git clone $clone_link repo
+
+ls
+
 cd repo
 git checkout $branch
 
