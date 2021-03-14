@@ -1,34 +1,26 @@
 #!/bin/sh
 
-token=$1
-branch=${GITHUB_BASE_REF}
+echo ${GITHUB_REF}
+echo ${GITHUB_HEAD_REF}
+echo ${GITHUB_BASE_REF}
+echo ${GITHUB_ACTION_REF}
 
-echo $branch
+# clone_link="https://github.com/$GITHUB_REPOSITORY.git"
 
-clone_link="https://github.com/$GITHUB_REPOSITORY.git"
+# git clone $clone_link repo
+# cd repo
+# git checkout $branch
 
-echo $clone_link
+# git diff --name-only $branch master >> changed.txt
 
-pwd
-ls
+# if ! grep -Fxq "APP_VERSION" changed.txt
+# then
+#   echo "APP_VERSION file not updated."
+#   exit 1
+# fi
 
-git clone $clone_link repo
-
-ls
-
-cd repo
-git checkout $branch
-
-git diff --name-only $branch master >> changed.txt
-
-if ! grep -Fxq "APP_VERSION" changed.txt
-then
-  echo "APP_VERSION file not updated."
-  exit 1
-fi
-
-if ! grep -Fxq "CHANGELOG.md" changed.txt
-then
-  echo "CHANGELOG.md file not updated."
-  exit 1
-fi
+# if ! grep -Fxq "CHANGELOG.md" changed.txt
+# then
+#   echo "CHANGELOG.md file not updated."
+#   exit 1
+# fi
