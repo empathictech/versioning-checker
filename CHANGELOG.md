@@ -2,14 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.2.0] - 2021-03-14
-### Updates
- - Added the option for user provided regex based file check
-
-## [0.1.1] - 2021-03-13
-### Updates
- - Completed working beta version of the action; checks for a changed APP_VERSION and CHANGELOG files
-
 ## v0.4-testing: 2021-03-13
 ### Updates
  - Fixed bash script error from previous release
