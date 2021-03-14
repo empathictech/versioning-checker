@@ -1,7 +1,7 @@
 #!/bin/sh
 
 token=$1
-branch=${GITHUB_REF#refs/heads/}
+branch=${GITHUB_REF}
 
 echo $branch
 
