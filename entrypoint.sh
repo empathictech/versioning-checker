@@ -1,13 +1,14 @@
 #!/bin/sh
 
 branch=${GITHUB_HEAD_REF}
+base=${GITHUB_BASE_REF}
 clone_link="https://github.com/$GITHUB_REPOSITORY.git"
 
 git clone $clone_link repo
 cd repo
 git checkout $branch
 
-git diff --name-only $branch master >> changed.txt
+git diff --name-only $branch $base >> changed.txt
 
 if ! grep -Fxq "APP_VERSION" changed.txt
 then
