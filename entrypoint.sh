@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/sh
 
 token=$1
 branch=${GITHUB_REF##*/}
