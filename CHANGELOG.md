@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## v1.0: 2021-03-13
+## v1.0: 2021-03-14
 ### Updates
  - Fixed bash script error from previous release
  - Fully functional action that checks for updated versioning files
@@ -11,11 +11,14 @@ All notable changes to this project will be documented in this file.
 ### Updates
  - Switched to Docker based action
  - Updated action to (hopefully) fail on whether the APP_VERSION and CHANGELOG.md files have been updated
+  - *RELEASE DELETED*
 
 ## v0.2-alpha: 2021-02-28
 ### Updates
  - Completed alpha version of the action; a functioning "Hello World" javascript action
+  - *RELEASE DELETED*
 
 ##  v0.1: 2021-02-27
 ### Initialized
  - Initial commit of repo
+  - *RELEASE DELETED*
