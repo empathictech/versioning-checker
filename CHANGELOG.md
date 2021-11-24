@@ -2,12 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.3: 2021-11-22
+### Updates/Fixes
+ - Adding support for PRs from forks
+  - https://github.com/mwcodebase/versioning-checker/issues/6
+
 ## v2.2: 2021-03-14
-### Updates
+### Updates/Fixes
  - Fixed typos in README.md, no code/functionality changes
 
 ## v2.1: 2021-03-14
-### Updates
+### Updates/Fixes
  - Added more verbose logging
  - Fixed bug in 2.0 where default input was not being accessed properly
 
