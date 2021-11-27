@@ -1,0 +1,14 @@
+name: Health check extravaganza
+
+# Triggers the workflow on pull request events for the master branch
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  version_check:
+    runs-on: ubuntu-latest
+    name: Checks APP_VERSION and CHANGELOG.md files for updates.
+    steps:
+    - name: Version check action
+      uses: mwcodebase/versioning-checker@v2.3
