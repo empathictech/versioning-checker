@@ -8,30 +8,35 @@ echo "Current branch: $CURR_BRANCH"
 BASE_BRANCH=${GITHUB_BASE_REF}
 echo "Comparing to: $BASE_BRANCH"
 
-# Clone repo
-echo "Cloning $GITHUB_REPOSITORY"
-REPO_LINK="https://github.com/$GITHUB_REPOSITORY.git"
+# Check if the PR is from a fork
+# args are being sent from action.yml, if the values aren't equal it is a fork
+if $1 != $2 then
+    
+else
+  # Clone repo
+  echo "Cloning $GITHUB_REPOSITORY"
+  REPO_LINK="https://github.com/$GITHUB_REPOSITORY.git"
 
-git clone $REPO_LINK repo
+  git clone $REPO_LINK repo
 
-# Checkout the current branch
-cd repo
-git checkout $CURR_BRANCH
+  # Checkout the current branch
+  cd repo
+  git checkout $CURR_BRANCH
 
-# Collect changed files
-git diff --name-only $CURR_BRANCH $BASE_BRANCH >> changed.txt
+  # Collect changed files
+  git diff --name-only $CURR_BRANCH $BASE_BRANCH >> changed.txt
 
-# Collect tracked files
-IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
+  # Collect tracked files
+  IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
 
-# Print any unchanged tracked files
-echo ""; echo "Checking for changes in ${tracked_files[@]}..."; echo ""
-for f in ${tracked_files[@]}; do
-  if ! grep -Fxq "$f" changed.txt
-  then
-    echo "$f has not been updated"
-    result=1
-  fi
-done
+  # Print any unchanged tracked files
+  echo ""; echo "Checking for changes in ${tracked_files[@]}..."; echo ""
+  for f in ${tracked_files[@]}; do
+    if ! grep -Fxq "$f" changed.txt then
+      echo "$f has not been updated"
+      result=1
+    fi
+  done
 
-exit $result
+  exit $result
+fi
