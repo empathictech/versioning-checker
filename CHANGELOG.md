@@ -2,10 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## v2.3: 2021-11-22
+## v3.0: 2021-11-22
 ### Updates/Fixes
  - Adding support for PRs from forks
   - https://github.com/mwcodebase/versioning-checker/issues/6
+  - requires major version update as the steps to run the action have changed
 
 ## v2.2: 2021-03-14
 ### Updates/Fixes

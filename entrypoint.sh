@@ -1,9 +1,6 @@
 #!/bin/bash
 result=0
 
-# Collect git information
-REPO=${{ github.event.pull_request.head.repo.full_name }}
-
 CURR_BRANCH=${GITHUB_HEAD_REF}
 echo "Current branch: $CURR_BRANCH"
 
