@@ -1,5 +1,5 @@
 name: 'Versioning Checker'
-description: 'Checks whether the APP_VERSION and CHANGELOG.md files have been updated on each PR'
+description: 'GitHub action for verifying expected file changes on each PR. Deault behavior is to verify whether APP_VERSION and CHANGELOG.md files have been updated.'
 icon: check-square
 color: purple
 
@@ -12,3 +12,6 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ github.event.pull_request.head.repo.full_name }}
+    - ${{ github.repository }}
