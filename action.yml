@@ -12,5 +12,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ github.event.pull_request.head.repo.full_name }}
