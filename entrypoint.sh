@@ -2,6 +2,8 @@
 result=0
 
 # Collect git information
+REPO=${{ github.event.pull_request.head.repo.full_name }}
+
 CURR_BRANCH=${GITHUB_HEAD_REF}
 echo "Current branch: $CURR_BRANCH"
 
@@ -9,8 +11,8 @@ BASE_BRANCH=${GITHUB_BASE_REF}
 echo "Comparing to: $BASE_BRANCH"
 
 # Clone repo (sent from action.yml)
-echo "Cloning $1"
-git clone https://github.com/$1.git repo
+echo "Cloning $REPO"
+git clone https://github.com/$REPO.git repo
 
 # Checkout the current branch
 cd repo
