@@ -2,18 +2,24 @@
 result=0
 
 # Collect git information
-branch=${GITHUB_HEAD_REF}
-base=${GITHUB_BASE_REF}
-clone_link="https://github.com/$GITHUB_REPOSITORY.git"
+CURR_BRANCH=${GITHUB_HEAD_REF}
+echo "Current branch: $CURR_BRANCH"
+
+BASE_BRANCH=${GITHUB_BASE_REF}
+echo "Comparing to: $BASE_BRANCH"
 
 # Clone repo
 echo "Cloning $GITHUB_REPOSITORY"
-git clone $clone_link repo
+REPO_LINK="https://github.com/$GITHUB_REPOSITORY.git"
+
+git clone $REPO_LINK repo
+
+# Checkout the current branch
 cd repo
-git checkout $branch
+git checkout $CURR_BRANCH
 
 # Collect changed files
-git diff --name-only $branch $base >> changed.txt
+git diff --name-only $CURR_BRANCH $BASE_BRANCH >> changed.txt
 
 # Collect tracked files
 IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
