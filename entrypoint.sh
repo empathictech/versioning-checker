@@ -8,8 +8,8 @@ BASE_BRANCH=${GITHUB_BASE_REF}
 echo "Comparing to: $BASE_BRANCH"
 
 # Clone repo (sent from action.yml)
-echo "Cloning $REPO"
-git clone https://github.com/$REPO.git repo
+echo "Cloning $1"
+git clone https://github.com/$1.git repo
 
 # Checkout the current branch
 cd repo
