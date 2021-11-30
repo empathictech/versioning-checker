@@ -10,10 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     name: Checks APP_VERSION and CHANGELOG.md files for updates.
     steps:
-    - name: Prepare env vars for Docker image
-      id: prep_check
-      run: |
-        REPO=${{ github.event.pull_request.head.repo.full_name }}
     - name: Run version checker
-      id: run_check
       uses: mwcodebase/versioning-checker@v3.0-test
