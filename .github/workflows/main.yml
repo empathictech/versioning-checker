@@ -16,4 +16,4 @@ jobs:
         REPO=${{ github.event.pull_request.head.repo.full_name }}
     - name: Run version checker
       id: run_check
-      uses: mwcodebase/versioning-checker@v3.0
+      uses: mwcodebase/versioning-checker@v3.0-test
