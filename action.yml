@@ -8,9 +8,11 @@ inputs:
     description: 'Comma separated list of all file names that should be tracked.'
     required: true
     default: "APP_VERSION,CHANGELOG.md"
+  pr_source_repo:
+    description: "Forked PRs do not work by default. If this PR is from a fork, provide the STRING from https://github.com/[STRING].git"
+    required: false
+    default: ""
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ github.event.pull_request.head.repo.full_name }}
