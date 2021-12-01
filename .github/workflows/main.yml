@@ -11,4 +11,4 @@ jobs:
     name: Checks APP_VERSION and CHANGELOG.md files for updates.
     steps:
     - name: Run version checker
-      uses: mwcodebase/versioning-checker@v3.0-test
+      uses: mwcodebase/versioning-checker@v2.3-test
