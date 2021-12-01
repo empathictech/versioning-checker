@@ -10,7 +10,7 @@ echo "Comparing to: $BASE_BRANCH"
 CLONE_LINK="https://github.com/$GITHUB_REPOSITORY.git"
 
 # Check if input pr is empty
-if [[ -n $INPUT_PR_SOURCE_REPO ]] then
+if [[ -n $INPUT_PR_SOURCE_REPO ]]; then
   CLONE_LINK="https://github.com/$INPUT_PR_SOURCE_REPO.git"
 fi
 
@@ -31,7 +31,7 @@ IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
 # Print any unchanged tracked files
 echo ""; echo "Checking for changes in ${tracked_files[@]}..."; echo ""
 for f in ${tracked_files[@]}; do
-  if ! grep -Fxq "$f" changed.txt then
+  if ! grep -Fxq "$f" changed.txt; then
     echo "$f has not been updated"
     result=1
   fi
