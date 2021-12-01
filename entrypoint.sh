@@ -7,16 +7,16 @@ echo "Current branch: $CURR_BRANCH"
 BASE_BRANCH=${GITHUB_BASE_REF}
 echo "Comparing to: $BASE_BRANCH"
 
-CLONE_LINK="https://github.com/$GITHUB_REPOSITORY"
+CLONE_LINK="https://github.com/$GITHUB_REPOSITORY.git"
 
 # Check if input pr is empty
 if [[ -n $INPUT_PR_SOURCE_REPO ]]; then
-  CLONE_LINK="https://github.com/$INPUT_PR_SOURCE_REPO"
+  CLONE_LINK="https://github.com/$INPUT_PR_SOURCE_REPO.git"
 fi
 
 # Clone repo (sent from action.yml)
 echo "Cloning $CLONE_LINK"
-git clone https://github.com/$CLONE_LINK.git repo
+git clone https://github.com/$CLONE_LINK repo
 
 # Checkout the current branch
 cd repo
