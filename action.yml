@@ -10,7 +10,7 @@ inputs:
     default: "APP_VERSION,CHANGELOG.md"
   pr_source_repo:
     description: "Forked PRs do not work by default. If this PR is from a fork, provide the STRING from https://github.com/[STRING].git"
-    required: false
+    required: true
     default: ""
 
 runs:
