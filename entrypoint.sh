@@ -25,7 +25,9 @@ git checkout $CURR_BRANCH
 
 # Collect changed files
 if [[ -n $INPUT_PR_SOURCE_REPO ]]; then
-  git diff --name-only $INPUT_PR_SOURCE_REPO/$CURR_BRANCH $GITHUB_REPOSITORY/$BASE_BRANCH >> changed.txt
+  git remote add $GITHUB_REPOSITORY "https://github.com/$GITHUB_REPOSITORY.git"
+  git fetch $GITHUB_REPOSITORY
+  git diff --name-only $CURR_BRANCH $GITHUB_REPOSITORY/$BASE_BRANCH >> changed.txt
 else
   git diff --name-only $CURR_BRANCH $BASE_BRANCH >> changed.txt
 fi
