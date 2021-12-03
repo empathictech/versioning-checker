@@ -10,9 +10,9 @@ echo "Comparing to: $BASE_BRANCH"
 CLONE_LINK="https://github.com/$GITHUB_REPOSITORY.git"
 
 # Check if input pr is empty
-if [[ -n $INPUT_PR_SOURCE_REPO ]]; then
+if [[ -n $INPUT_FORK_REPO_NAME ]]; then
   # Replace CLONE_LINK
-  CLONE_LINK="https://github.com/$INPUT_PR_SOURCE_REPO.git"
+  CLONE_LINK="https://github.com/$INPUT_FORK_REPO_NAME.git"
 fi
 
 # Clone repo
@@ -24,7 +24,7 @@ cd repo
 git checkout $CURR_BRANCH
 
 # Collect changed files
-if [[ -n $INPUT_PR_SOURCE_REPO ]]; then
+if [[ -n $INPUT_FORK_REPO_NAME ]]; then
   git remote add $GITHUB_REPOSITORY "https://github.com/$GITHUB_REPOSITORY.git"
   git fetch $GITHUB_REPOSITORY
   git diff --name-only $CURR_BRANCH $GITHUB_REPOSITORY/$BASE_BRANCH >> changed.txt

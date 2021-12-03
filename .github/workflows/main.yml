@@ -19,4 +19,4 @@ jobs:
     - name: Run fork version checker
       uses: mwcodebase/versioning-checker@v2.3-test
       with:
-        pr_source_repo: mwcodebase/versioning-checker
+        fork_repo_name: mwcodebase/versioning-checker
