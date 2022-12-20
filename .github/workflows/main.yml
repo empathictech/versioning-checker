@@ -1,22 +1,22 @@
 name: Health check extravaganza
 
-# Triggers the workflow on pull request events for the master branch
+# Triggers the workflow on pull request events for the main branch
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   version_check:
     runs-on: ubuntu-latest
-    name: Checks APP_VERSION and CHANGELOG.md files for updates.
+    name: Checks APP_VERSION and CHANGELOG.md files for updates
     steps:
     - name: Run version checker
-      uses: mwcodebase/versioning-checker@v2.3-test
+      uses: mwcodebase/versioning-checker@2.3
   fork_version_check:
     runs-on: ubuntu-latest
-    name: Checks APP_VERSION and CHANGELOG.md files for updates. Simulates usage for forked repos.
+    name: Checks APP_VERSION and CHANGELOG.md files for updates. Simulates usage for forked repos
     steps:
     - name: Run fork version checker
-      uses: mwcodebase/versioning-checker@v2.3-test
+      uses: mwcodebase/versioning-checker@2.3
       with:
         fork_repo_name: mwcodebase/versioning-checker

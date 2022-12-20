@@ -1,5 +1,5 @@
 name: 'Versioning Checker'
-description: 'GitHub action for verifying expected file changes on each PR. Deault behavior is to verify whether APP_VERSION and CHANGELOG.md files have been updated.'
+description: 'GitHub action for verifying expected file changes on each PR'
 icon: check-square
 color: purple
 
@@ -9,7 +9,7 @@ inputs:
     required: true
     default: "APP_VERSION,CHANGELOG.md"
   fork_repo_name:
-    description: "PRs from forked repos do not work by default. If this PR is from a forked repo, provide the new REPO_NAME: https://github.com/[REPO_NAME].git"
+    description: "PRs from forked repos do not work by default. If this PR is from a forked repo, provide the new REPO_NAME (https://github.com/[REPO_NAME].git)"
     required: true
     default: ""
 
