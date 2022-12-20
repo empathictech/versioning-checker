@@ -1,19 +1,36 @@
 #!/bin/bash
 result=0
 
-# Collect git information
-branch=${GITHUB_HEAD_REF}
-base=${GITHUB_BASE_REF}
-clone_link="https://github.com/$GITHUB_REPOSITORY.git"
+CURR_BRANCH=${GITHUB_HEAD_REF}
+echo "Current branch: $CURR_BRANCH"
+
+BASE_BRANCH=${GITHUB_BASE_REF}
+echo "Comparing to: $BASE_BRANCH"
+
+CLONE_LINK="https://github.com/$GITHUB_REPOSITORY.git"
+
+# Check if input pr is empty
+if [[ -n $INPUT_FORK_REPO_NAME ]]; then
+  # Replace CLONE_LINK
+  CLONE_LINK="https://github.com/$INPUT_FORK_REPO_NAME.git"
+fi
 
 # Clone repo
-echo "Cloning $GITHUB_REPOSITORY"
-git clone $clone_link repo
+echo "Cloning $CLONE_LINK"
+git clone $CLONE_LINK repo
+
+# Checkout the current branch
 cd repo
-git checkout $branch
+git checkout $CURR_BRANCH
 
 # Collect changed files
-git diff --name-only $branch $base >> changed.txt
+if [[ -n $INPUT_FORK_REPO_NAME ]]; then
+  git remote add $GITHUB_REPOSITORY "https://github.com/$GITHUB_REPOSITORY.git"
+  git fetch $GITHUB_REPOSITORY
+  git diff --name-only $CURR_BRANCH $GITHUB_REPOSITORY/$BASE_BRANCH >> changed.txt
+else
+  git diff --name-only $CURR_BRANCH $BASE_BRANCH >> changed.txt
+fi
 
 # Collect tracked files
 IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
@@ -21,8 +38,7 @@ IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
 # Print any unchanged tracked files
 echo ""; echo "Checking for changes in ${tracked_files[@]}..."; echo ""
 for f in ${tracked_files[@]}; do
-  if ! grep -Fxq "$f" changed.txt
-  then
+  if ! grep -Fxq "$f" changed.txt; then
     echo "$f has not been updated"
     result=1
   fi

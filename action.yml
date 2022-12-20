@@ -1,5 +1,5 @@
 name: 'Versioning Checker'
-description: 'Checks whether the APP_VERSION and CHANGELOG.md files have been updated on each PR'
+description: 'GitHub action for verifying expected file changes on each PR'
 icon: check-square
 color: purple
 
@@ -8,6 +8,10 @@ inputs:
     description: 'Comma separated list of all file names that should be tracked.'
     required: true
     default: "APP_VERSION,CHANGELOG.md"
+  fork_repo_name:
+    description: "PRs from forked repos do not work by default. If this PR is from a forked repo, provide the new REPO_NAME (https://github.com/[REPO_NAME].git)"
+    required: true
+    default: ""
 
 runs:
   using: 'docker'
