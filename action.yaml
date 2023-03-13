@@ -1,17 +1,21 @@
 name: 'Versioning Checker'
-description: 'GitHub action for verifying expected file changes on each PR'
+description: 'GitHub action for verifying version change propagation'
 icon: check-square
 color: purple
 
 inputs:
   tracked_files:
-    description: 'Comma separated list of all file names that should be tracked.'
+    description: 'Check if version tracking files have changed: provide a comma separated list of all files that need to be updated. File names are run through a simple diff check.'
     required: true
-    default: "APP_VERSION,CHANGELOG.md"
+    default: 'APP_VERSION,CHANGELOG.md'
+  tracked_fields:
+    description: 'Check if version numbers within files are the same: provide a comma separated list of comma separated pairs. Each pair should be a file name && regular expression. The regular expressions will be evaluated for each of their partners, and all results will be compared for equivalence.'
+    required: true
+    default: 'APP_VERSION,CHANGELOG.md'
   fork_repo_name:
-    description: "PRs from forked repos do not work by default. If this PR is from a forked repo, provide the new REPO_NAME (https://github.com/[REPO_NAME].git)"
+    description: 'PRs from forked repos do not work by default. If this PR is from a forked repo, provide the new REPO_NAME (https://github.com/[REPO_NAME].git)'
     required: true
-    default: ""
+    default: ''
 
 runs:
   using: 'docker'
