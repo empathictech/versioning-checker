@@ -10,12 +10,12 @@ jobs:
     name: Checks APP_VERSION and CHANGELOG.md files for updates
     steps:
     - name: Run version checker
-      uses: mwcodebase/versioning-checker@2.3
+      uses: mwcodebase/versioning-checker@2.1.4
   fork_version_check:
     runs-on: ubuntu-latest
-    name: Checks APP_VERSION and CHANGELOG.md files for updates. Simulates usage for forked repos
+    name: Checks APP_VERSION and CHANGELOG.md files for updates, simulated for a forked repo
     steps:
     - name: Run fork version checker
-      uses: mwcodebase/versioning-checker@2.3
+      uses: mwcodebase/versioning-checker@2.1.4
       with:
         fork_repo_name: mwcodebase/versioning-checker
