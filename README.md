@@ -19,4 +19,6 @@ Will fail if any of the provided file names are not found in a git diff between 
 
 # Contributing
 
-However you like! Reach out, leave comment, open an issue, open a PR, make your own fork; the options under an MIT license are numerous.
+This is a made for one, shared to all style project. So, if you're a consumer and notice a bug please do leave an issue/comment. If it's extra features you desire, I recommend making your own fork. Thanks for stopping by!
+
+This is released under the [MIT License](LICENSE)
