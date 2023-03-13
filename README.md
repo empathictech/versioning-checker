@@ -47,4 +47,12 @@ This is released under the [MIT License](LICENSE)
 
 ## Testing
 
-`entrypoint.sh` can be run locally.
+Run
+```bash
+make build
+```
+
+and
+```bash
+make run
+```
