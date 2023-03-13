@@ -44,3 +44,7 @@ The script will also fail if multiple (or no) version numbers are found. Each ve
 This is a made for one, shared to all style project. So, if you're a consumer and notice a bug please do leave an issue/comment. If it's extra features you desire, I recommend making your own fork. Thanks for stopping by!
 
 This is released under the [MIT License](LICENSE)
+
+## Testing
+
+`entrypoint.sh` can be run locally.
