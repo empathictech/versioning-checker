@@ -1,6 +1,5 @@
 name: Health check extravaganza
 
-# Triggers the workflow on pull request events for the main branch
 on:
   pull_request:
     branches: [ main ]
