@@ -56,3 +56,5 @@ and
 ```bash
 make run
 ```
+
+If the run fails, check the docker environment variables/tags.
