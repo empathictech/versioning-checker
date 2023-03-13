@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - .yml files to .yaml
+- Versioning strategy
+
+### Added
+- Version field matching
 
 ## 2.0.3: 2022-12-20
 ### Fixed
