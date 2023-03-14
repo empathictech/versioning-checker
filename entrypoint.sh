@@ -9,15 +9,15 @@ if [[ -n $INPUT_FORK_REPO_NAME ]]; then
 fi
 
 # Clone repo
-echo "Cloning $CLONE_LINK"; echo ""
+printf "Cloning:\n\t$GITHUB_REPOSITORY\n\n"
 git clone --quiet $CLONE_LINK repo
 
 # Checkout the current branch
 CURR_BRANCH=${GITHUB_HEAD_REF}
-echo "Current branch: $CURR_BRANCH"
+printf "Current branch:\n\t$CURR_BRANCH\n"
 
 BASE_BRANCH=${GITHUB_BASE_REF}
-echo "Comparing to:   $BASE_BRANCH"; echo ""
+printf "Comparing to:\n\t$BASE_BRANCH\n\n"
 
 cd repo
 git checkout --quiet $CURR_BRANCH
@@ -34,8 +34,7 @@ fi
 # Collect tracked files
 IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
 
-echo "Validating: ${tracked_files[@]}"
-echo ""
+printf "Validating:\n\t${tracked_files[@]}\n\n"
 
 # Prep for version number matching
 matches=()
@@ -50,22 +49,21 @@ function add_unique_value() {
 }
 
 # Loop through the tracked files...
-for (( curr_file in ${tracked_files[@]} )); do
+for curr_file in ${tracked_files[@]} ; do
   # ...check if they've been updated
-  if (( ! grep -Fxq "$curr_file" changed.txt )); then
-    echo "$curr_file has not been updated"; echo ""
+  if ! grep -Fxq "$curr_file" changed.txt ; then
+    printf "$curr_file has not been updated\n\n"
     result=1
   fi
 
   # ...and get their version match
   match=$(grep -oE "$INPUT_VERSION_REGEX" "$curr_file" | head -n1)
-  echo "$curr_file returned $match"; echo ""
+  printf "$curr_file returned $match\n\n"
   add_unique_value "$match"
 done
 
 if [ "${#matches[@]}" -ne 1 ]; then
-  echo "Multiple (or no) version numbers found"
-  echo "Found: ${matches[@]}"; echo ""
+  printf "Versions found:\n\t${matches[@]}\n\n"
   result=1
 fi
 
