@@ -51,3 +51,5 @@ Run
 ```bash
 ./docker-test.sh
 ```
+
+See arm-test if you're using an Apple Silicon mac.
