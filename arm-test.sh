@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Define docker parameters
 
 IMAGE_NAME="versioning-checker-arm"
@@ -14,7 +16,7 @@ INPUT_FORK_REPO_NAME=""
 
 # Run docker cmds
 
-docker build -t $IMAGE_NAME .
+docker build -t $IMAGE_NAME -f ./arm-test/Dockerfile .
 
 docker run \
   -e GITHUB_REPOSITORY=$GITHUB_REPOSITORY -e GITHUB_HEAD_REF=$CURR_BRANCH -e GITHUB_BASE_REF=$GITHUB_BASE_REF \
