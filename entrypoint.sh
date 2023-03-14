@@ -1,27 +1,24 @@
 #!/bin/bash
 result=0
 
-CURR_BRANCH=${GITHUB_HEAD_REF}
-echo "Current branch: $CURR_BRANCH"
-
-BASE_BRANCH=${GITHUB_BASE_REF}
-echo "Comparing to: $BASE_BRANCH"
-
 CLONE_LINK="https://github.com/$GITHUB_REPOSITORY.git"
 
-# Check if input pr is empty
+# Replace CLONE_LINK if the user provided a fork name
 if [[ -n $INPUT_FORK_REPO_NAME ]]; then
-  # Replace CLONE_LINK
   CLONE_LINK="https://github.com/$INPUT_FORK_REPO_NAME.git"
 fi
 
 # Clone repo
-echo "Cloning $CLONE_LINK"
-git clone $CLONE_LINK repo
+printf "Cloning:\n\t$GITHUB_REPOSITORY\n\n"
+git clone --quiet $CLONE_LINK repo
 
 # Checkout the current branch
+CURR_BRANCH=${GITHUB_HEAD_REF}
+BASE_BRANCH=${GITHUB_BASE_REF}
+printf "Comparing branch $CURR_BRANCH to $BASE_BRANCH\n\n"
+
 cd repo
-git checkout $CURR_BRANCH
+git checkout --quiet $CURR_BRANCH
 
 # Collect changed files
 if [[ -n $INPUT_FORK_REPO_NAME ]]; then
@@ -35,13 +32,51 @@ fi
 # Collect tracked files
 IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
 
-# Print any unchanged tracked files
-echo ""; echo "Checking for changes in ${tracked_files[@]}..."; echo ""
-for f in ${tracked_files[@]}; do
-  if ! grep -Fxq "$f" changed.txt; then
-    echo "$f has not been updated"
-    result=1
+printf "Validating:\n\t"
+echo "${tracked_files[@]}"; echo ""
+
+# Prep for version number matching
+matches=()
+
+# Function that allows us to treat matches like a set
+function add_unique_value() {
+  local value=$1
+
+  if [[ ! "${matches[@]}" =~ "${value}" ]]; then
+    matches+=("$value")
   fi
+}
+
+# Loop through the tracked files...
+for curr_file in ${tracked_files[@]} ; do
+  # ...check if they've been updated
+  if ! grep -Fxq "$curr_file" changed.txt ; then
+    printf "$curr_file has NOT been updated "
+    result=1
+  else 
+    printf "$curr_file has been updated "
+  fi
+
+  # ...and get their version match
+  match=$(grep -oE "$INPUT_VERSION_REGEX" "$curr_file" | head -n1)
+  printf "and returned $match\n"
+  add_unique_value "$match"
 done
 
-exit $result
+echo ""
+printf "${#matches[@]}"
+printf " version(s) found:\n\t"
+printf "${matches[@]}"
+echo ""
+
+if [ "${#matches[@]}" -ne 1 ]; then
+  result=1
+fi
+
+if [ $result -ne 0 ]; then
+  printf "\nErrors found\n"
+  exit $result
+else 
+  printf "\nPassed!\n"
+  exit $result
+fi

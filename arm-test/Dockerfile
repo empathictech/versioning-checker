@@ -1,5 +1,5 @@
 FROM bash:latest as builder
-FROM alpine/git:latest-amd64
+FROM alpine/git:latest-arm64
 
 COPY --from=builder /usr/local/bin/bash /bin/bash
 COPY entrypoint.sh /tmp/entrypoint.sh

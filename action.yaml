@@ -1,0 +1,22 @@
+name: 'Versioning Checker'
+description: 'GitHub action for verifying version update propagation'
+icon: check-square
+color: purple
+
+inputs:
+  tracked_files:
+    description: 'Comma separated list of all files that track the version.'
+    required: true
+    default: 'APP_VERSION,CHANGELOG.md'
+  version_regex:
+    description: 'Regular expression for the version pattern. The script will use the first match of this regex in each tracked file.'
+    required: true
+    default: '[0-9]+\.[0-9]+\.[0-9]+'
+  fork_repo_name:
+    description: 'PRs from forked repos do not work by default. If this PR is from a forked repo, provide the new REPO_NAME (https://github.com/[REPO_NAME].git)'
+    required: true
+    default: ''
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
