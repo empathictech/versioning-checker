@@ -51,13 +51,15 @@ function add_unique_value() {
 for curr_file in ${tracked_files[@]} ; do
   # ...check if they've been updated
   if ! grep -Fxq "$curr_file" changed.txt ; then
-    printf "$curr_file has not been updated\n\n"
+    printf "$curr_file has NOT been updated "
     result=1
+  else 
+    printf "$curr_file has been updated "
   fi
 
   # ...and get their version match
   match=$(grep -oE "$INPUT_VERSION_REGEX" "$curr_file" | head -n1)
-  printf "$curr_file returned $match\n"
+  printf "and returned $match\n"
   add_unique_value "$match"
 done
 
