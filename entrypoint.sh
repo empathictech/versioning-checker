@@ -14,10 +14,8 @@ git clone --quiet $CLONE_LINK repo
 
 # Checkout the current branch
 CURR_BRANCH=${GITHUB_HEAD_REF}
-printf "Current branch:\n\t$CURR_BRANCH\n"
-
 BASE_BRANCH=${GITHUB_BASE_REF}
-printf "Comparing to:\n\t$BASE_BRANCH\n\n"
+printf "Comparing branch $CURR_BRANCH to $BASE_BRANCH\n\n"
 
 cd repo
 git checkout --quiet $CURR_BRANCH
@@ -34,7 +32,8 @@ fi
 # Collect tracked files
 IFS="," read -a tracked_files <<< $INPUT_TRACKED_FILES
 
-printf "Validating:\n\t${tracked_files[@]}\n\n"
+printf "Validating:\n\t"
+echo "${tracked_files[@]}"; echo ""
 
 # Prep for version number matching
 matches=()
@@ -58,13 +57,24 @@ for curr_file in ${tracked_files[@]} ; do
 
   # ...and get their version match
   match=$(grep -oE "$INPUT_VERSION_REGEX" "$curr_file" | head -n1)
-  printf "$curr_file returned $match\n\n"
+  printf "$curr_file returned $match\n"
   add_unique_value "$match"
 done
 
+echo ""
+printf "${#matches[@]}"
+printf " version(s) found:\n\t"
+printf "${matches[@]}"
+echo ""
+
 if [ "${#matches[@]}" -ne 1 ]; then
-  printf "Versions found:\n\t${matches[@]}\n\n"
   result=1
 fi
 
-exit $result
+if [ $result -ne 0 ]; then
+  printf "\nErrors found\n"
+  exit $result
+else 
+  printf "\nPassed!\n"
+  exit $result
+fi
