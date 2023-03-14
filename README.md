@@ -49,12 +49,5 @@ This is released under the [MIT License](LICENSE)
 
 Run
 ```bash
-make build
+./docker-test.sh
 ```
-
-and
-```bash
-make run
-```
-
-If the run fails, check the docker environment variables/tags.
