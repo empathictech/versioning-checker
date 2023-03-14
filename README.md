@@ -23,7 +23,7 @@ Comma separated list of all files that track the version.
 ## version_regex
 
 Regular expression for the version pattern. The script will use the first match of this regex in each tracked file.
-- Default: '^[0-9]+\.[0-9]+\.[0-9]+$'
+- Default: '[0-9]+\.[0-9]+\.[0-9]+'
 
 ## fork_repo_name
 

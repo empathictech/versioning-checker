@@ -11,7 +11,7 @@ CURR_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 GITHUB_BASE_REF="main"
 
 INPUT_TRACKED_FILES="APP_VERSION,CHANGELOG.md"
-INPUT_VERSION_REGEX="^[0-9]+\.[0-9]+\.[0-9]+$"
+INPUT_VERSION_REGEX="[0-9]+\.[0-9]+\.[0-9]+"
 INPUT_FORK_REPO_NAME=""
 
 # Run docker cmds
