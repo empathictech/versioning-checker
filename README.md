@@ -52,4 +52,9 @@ Run
 ./docker-test.sh
 ```
 
-See arm-test if you're using an Apple Silicon mac.
+or 
+```bash
+./arm-test.sh
+```
+
+For ARM processors.
