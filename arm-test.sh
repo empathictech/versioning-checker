@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Define docker parameters
 
 IMAGE_NAME="versioning-checker-arm"
