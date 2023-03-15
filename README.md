@@ -51,10 +51,3 @@ Run
 ```bash
 ./docker-test.sh
 ```
-
-or 
-```bash
-./arm-test.sh
-```
-
-For ARM processors.
