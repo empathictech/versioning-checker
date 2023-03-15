@@ -4,7 +4,13 @@ set -e
 
 # Define docker parameters
 
-IMAGE_NAME="versioning-checker-test"
+if [[ "$(uname -m)" == "arm"* ]]; then
+  IMAGE_NAME="versioning-checker-arm-test"
+  DOCKERFILE="-f ./arm-test/Dockerfile ."
+else
+  IMAGE_NAME="versioning-checker-test"
+  DOCKERFILE="."
+fi
 
 GITHUB_REPOSITORY="empathictech/versioning-checker"
 CURR_BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -16,7 +22,7 @@ INPUT_FORK_REPO_NAME=""
 
 # Run docker cmds
 
-docker build -t $IMAGE_NAME .
+docker build -t $IMAGE_NAME $DOCKERFILE
 
 docker run \
   -e GITHUB_REPOSITORY=$GITHUB_REPOSITORY -e GITHUB_HEAD_REF=$CURR_BRANCH -e GITHUB_BASE_REF=$GITHUB_BASE_REF \
