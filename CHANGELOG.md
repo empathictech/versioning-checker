@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.1.5: 2023-03-15
+### Added
+- Bug fixes
+
+### Changed
+- Testing scripts; single script will now detect processor type
+
 ## 2.1.4: 2023-03-13
 ### Removed
 - Funding.yml
