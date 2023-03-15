@@ -7,18 +7,27 @@ on:
 jobs:
   version_check:
     runs-on: ubuntu-latest
-    name: Standard usage
+    name: Standard example
     steps:
     - name: Version checker
-      uses: mwcodebase/versioning-checker@2.1.4
+      uses: mwcodebase/versioning-checker@2.1.5
 
   unique_version_check:
     runs-on: ubuntu-latest
-    name: With parameters
+    name: Example with parameters
     steps:
     - name: Version checker
-      uses: mwcodebase/versioning-checker@2.1.4
+      uses: mwcodebase/versioning-checker@2.1.5
       with:
         tracked_files: 'APP_VERSION,CHANGELOG.md'
         version_regex:  '[0-9]+\.[0-9]+\.[0-9]+'
         fork_repo_name: 'mwcodebase/versioning-checker'
+
+  separate_check:
+    runs-on: ubuntu-latest
+    name: This is purposeful
+    steps:
+    - name: Check that the (always one behind) version has been updated
+      uses: mwcodebase/versioning-checker@2.1.5
+      with:
+        tracked_files: '.github/workflows/main.yaml'
