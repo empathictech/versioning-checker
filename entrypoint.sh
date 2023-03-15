@@ -63,11 +63,10 @@ for curr_file in ${tracked_files[@]} ; do
   add_unique_value "$match"
 done
 
-echo ""
-printf "${#matches[@]}"
-printf " version(s) found:\n\t"
-printf "${matches[@]}"
-echo ""
+printf "\n${#matches[@]} version(s) found:\n\t"
+
+matches_string="${matches[*]}"
+printf "${matches_string//${IFS:0:1}/", "}\n"
 
 if [ "${#matches[@]}" -ne 1 ]; then
   result=1
